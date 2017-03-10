@@ -1,0 +1,111 @@
+body{
+	width:100%;
+}
+
+table,.events{
+	margin-top:40px;
+}
+
+#tableHeader tr{
+	background: #1B1E24;
+	color:white;
+	border-top-left-radius:15px;
+	border-top-right-radius:15px;
+}
+
+
+
+
+.wrapper{
+	width:85%;
+	margin:0 auto;
+	margin-top:20px;
+}
+.title img{
+	margin-left:60%;
+	height:35px;
+	width:auto;
+}
+
+.title{
+	display:flex;
+	flex-direction:row;
+	justify-content:flex-start;
+
+}
+
+.title img{
+	align-self:flex-end;
+}
+
+table img{
+	width:140px;
+	height:auto;
+}
+
+
+
+tr{
+	cursor:pointer;
+	display:flex;
+	flex-direction:row;
+	align-items:stretch;
+	justify-content:center;
+}
+tr > *{
+	flex:1;
+}
+
+.wins{
+	color:#004D40;
+	font-size:1.3em;
+}
+
+.losses{
+	color:#f44336;
+	font-size:1.3em;
+}
+
+.draws{
+	color:#1565C0;
+	font-size:1.3em;
+	
+}
+
+.card{
+	display:flex;
+	flex-direction:row;
+	flex-wrap:wrap;
+	justify-content:space-around;
+	> * {
+		
+	}
+	
+}
+
+.fa-video-camera{
+	color:brown;
+}
+
+.card img{
+	width:auto;
+	height:250px;
+	padding:10px;
+}
+.card .details{
+	padding:5px;
+	display:flex;
+	flex-wrap:wrap;
+	flex-direction:column;
+	padding:10px;
+	justify-content:center;
+}
+
+
+ 
+
+
+
+
+
+
