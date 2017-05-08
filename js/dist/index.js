@@ -1,3 +1,5 @@
+'use strict';
+
 var table_body = document.querySelector('tbody');
 var todayDate = document.querySelector('#date');
 var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];

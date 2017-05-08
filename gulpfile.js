@@ -43,7 +43,7 @@ gulp.task('js', function() {
             presets: ['es2015']
         }))
         .pipe(size())
-        .pipe(gulp.dest('./js/'))
+        .pipe(gulp.dest('./js/dist'))
         .pipe(browserSync.stream());
 });
 
