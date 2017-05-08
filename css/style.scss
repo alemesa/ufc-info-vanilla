@@ -1,3 +1,17 @@
+/*Variables*/
+*{
+	font-family: 'Libre Franklin', sans-serif;
+}
+h1,h2,h3,h4,h5,h6{
+	font-family: 'Rubik', sans-serif;
+}
+
+
+
+/*Nav*/
+
+/*Rest*/
+
 body{
 	width:100%;
 }
@@ -12,9 +26,6 @@ table,.events{
 	border-top-left-radius:15px;
 	border-top-right-radius:15px;
 }
-
-
-
 
 .wrapper{
 	width:85%;
@@ -77,10 +88,7 @@ tr > *{
 	flex-direction:row;
 	flex-wrap:wrap;
 	justify-content:space-around;
-	> * {
-		
-	}
-	
+
 }
 
 .fa-video-camera{
