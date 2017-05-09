@@ -153,14 +153,14 @@ nav a {
 }
 
 .championProfile{
-	flex:1 1 45%;
-	display:flex;
-	    padding: 1em;
+		flex:0 1 45%;
+		display:flex;
+	  padding: 1em;
+		margin:8px;
     box-shadow: 0 0 0 3px rgba(38,38,38,0.1);
-
-
 	.profilePic{
 		width:40%;
+		padding:5px;
 	}
 	.profileData{
 		padding-left: 20px;
@@ -176,7 +176,6 @@ nav a {
 		}
 	}
 }
-
 
 
 
@@ -209,8 +208,6 @@ nav a {
 .title:not(.firstTitle){
 	margin-top: 3em;
 }
-
-
 
 
 

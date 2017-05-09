@@ -84,8 +84,6 @@ axios.get('https://crossorigin.me/http://ufc-data-api.ufc.com/api/v3/iphone/figh
 	//Loop
 	for (var i = 0; i < length; i++) {
 
-			
-
 		if (!fighters[i].nickname) {
 			fighters[i].nickname = " ";
 		}
