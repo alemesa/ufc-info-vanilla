@@ -213,10 +213,21 @@ nav a {
 
 
 
+.loaderContainer{
+	text-align:center;
+}
 
+.loader{
+	animation: spin 1s infinite;
+	border:0;
+	width:120%;
+	text-align:center;
+}
 
-
-
+@keyframes spin {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
+}
 
 
 
