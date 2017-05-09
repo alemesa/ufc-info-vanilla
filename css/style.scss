@@ -1,119 +1,246 @@
-/*Variables*/
+/*Fonts*/
+@import url('https://fonts.googleapis.com/css?family=Lato|Playfair+Display:700');
+
+@font-face {
+  font-family: 'UFC-Font';
+  src: url('./fonts/Sternbach Bold Italic.otf'); /* IE9 Compat Modes */
+}
+
 *{
-	font-family: 'Libre Franklin', sans-serif;
-}
-h1,h2,h3,h4,h5,h6{
-	font-family: 'Rubik', sans-serif;
+	font-family: 'Lato', sans-serif;
+	color:#333;
 }
 
-
-
-/*Nav*/
-
-/*Rest*/
-
-body{
-	width:100%;
+h1,h2,h3,h4,h5,h6,li>a{
+	font-family: 'Playfair Display', serif;
 }
 
-table,.events{
-	margin-top:40px;
+
+html {
+  box-sizing: border-box;
+  background:#eeeeee;
+  font-size: 20px;
+  font-weight: 200;
+}
+body {
+  margin: 0;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
 }
 
-#tableHeader tr{
-	background: #1B1E24;
+.site-wrap {
+  max-width: 90%;
+  margin: 100px auto;
+  background:white;
+  padding:30px;
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.05);
+  transform: scale(0.98);
+  transition: transform 0.5s;
+}
+
+body.fixed-nav .site-wrap {
+  transform: scale(1);
+}
+
+
+header {
+  text-align: center;
+  height:45vh;
+  background:url(http://wallpapercave.com/wp/wc1705371.jpg) bottom center no-repeat;
+  background-size:cover;
+  display:flex;
+  align-items:center;
+  justify-content: center;
+  h1 {
+	  font-family: 'UFC-Font','Playfair Display',sans-serif;
+	  padding-top: 45px;
+  color:white;
+  font-size: 5vw;
+  text-shadow: 3px 4px 0 rgba(0,0,0,0.2)
+}
+}
+
+
+
+nav {
+  background:black;
+  top:0;
+  width: 100%;
+  transition:all 0.5s;
+  position: relative;
+  z-index: 1;
+}
+
+body.fixed-nav nav {
+  position: fixed;
+  box-shadow:0 5px 0 rgba(0,0,0,0.1);
+}
+
+nav ul {
+  margin: 0;
+  padding:0;
+  list-style: none;
+  display:flex;
+}
+
+nav li {
+  flex:1;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+//Fix
+nav li:hover, nav li:hover > a{
+	background-color:white;
+	color:black;
+}
+
+.logo:hover, .logo:hover > a{
+	background-color:#C5000C;
 	color:white;
-	border-top-left-radius:15px;
-	border-top-right-radius:15px;
 }
 
-.wrapper{
-	width:85%;
-	margin:0 auto;
-	margin-top:20px;
-}
-.title img{
-	margin-left:60%;
-	height:35px;
-	width:auto;
+
+
+li.logo {
+  max-width:0;
+  overflow: hidden;
+  background: white;
+  transition: max-width 0.5s;
+  font-weight: 800;
+  font-size: 35px;
 }
 
-.title{
+li.logo a {
+  color:#C5000C;
+  font-family: 'UFC-Font','Playfair Display',sans-serif;
+  font-size:1.2em;
+}
+
+.fixed-nav li.logo {
+  max-width:400px;
+}
+
+nav a {
+  text-decoration: none;
+  padding:10px;
+  display: inline-block;
+  color:white;
+}
+
+/*Twitter Section*/
+#twitterSection{
 	display:flex;
-	flex-direction:row;
-	justify-content:flex-start;
-
-}
-
-.title img{
-	align-self:flex-end;
-}
-
-table img{
-	width:140px;
-	height:auto;
-}
-
-
-
-tr{
-	cursor:pointer;
-	display:flex;
-	flex-direction:row;
-	align-items:stretch;
-	justify-content:center;
-}
-tr > *{
-	flex:1;
-}
-
-.wins{
-	color:#004D40;
-	font-size:1.3em;
-}
-
-.losses{
-	color:#f44336;
-	font-size:1.3em;
-}
-
-.draws{
-	color:#1565C0;
-	font-size:1.3em;
-	
-}
-
-.card{
-	display:flex;
-	flex-direction:row;
+	justify-content: center;
+	align-items: center;
 	flex-wrap:wrap;
+
+	&>*{
+		flex:1 1 30%;
+		margin:0px 5px;
+	}
+}
+
+/*Fighters Section*/
+#fightersSection{
+	display:flex;
+	flex-direction:row;
+	align-items:center;
 	justify-content:space-around;
-
-}
-
-.fa-video-camera{
-	color:brown;
-}
-
-.card img{
-	width:auto;
-	height:250px;
-	padding:10px;
-}
-.card .details{
-	padding:5px;
-	display:flex;
 	flex-wrap:wrap;
-	flex-direction:column;
-	padding:10px;
-	justify-content:center;
+}
+
+.championProfile{
+	flex:1 1 45%;
+	display:flex;
+	    padding: 1em;
+    box-shadow: 0 0 0 3px rgba(38,38,38,0.1);
+
+
+	.profilePic{
+		width:40%;
+	}
+	.profileData{
+		padding-left: 20px;
+		display:flex;
+		flex-direction:column;
+		justify-content:center;
+		.weightClass{
+			display:flex;
+			flex-direction:row;
+			flex-wrap:wrap;
+			justify-content: flex-start;
+			align-items: center;
+		}
+	}
 }
 
 
- 
+
+
+/*General*/
+.title{
+	font-weight:600;
+	font-style:italic;
+	text-align:center;
+	font-size:1.2em;
+}
+
+.disclaimer{
+	display:flex;
+	flex-direction:row;
+	flex-wrap:wrap;
+	justify-content: space-between;
+	&>*{
+		width:45%;
+	}
+}
+
+.icon{
+	width:20px;
+}
+
+#twitterSection{
+	padding-top:20px;
+}
+
+.title:not(.firstTitle){
+	margin-top: 3em;
+}
 
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+/*Scroll Bar*/
+body::-webkit-scrollbar {
+	width: 10px;
+	background-color: #F5F5F5;
+}
+
+body::-webkit-scrollbar-thumb {
+	border-radius: 5px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #C5000C;
+}
+
+body::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 3px;
+	background-color: #F5F5F5;
+}

@@ -1,4 +1,20 @@
-var table_body = document.querySelector('tbody');
+/*Header Transition*/
+const nav = document.querySelector('#main');
+const topOfNav = nav.offsetTop;
+
+function fixNav() {
+        if (window.scrollY >= topOfNav) {
+            document.body.style.paddingTop = nav.offsetHeight;
+            document.body.classList.add('fixed-nav');
+        } else {
+            document.body.classList.remove('fixed-nav');
+            document.body.style.paddingTop = 0;
+        }
+    }
+window.addEventListener('scroll', fixNav);
+
+
+
 var todayDate = document.querySelector('#date');
 var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 var today = new Date();
@@ -7,32 +23,70 @@ var month = today.getMonth() + 1;
 var monthDesc = months[month - 1];
 var year = today.getFullYear();
 todayDate.innerHTML = monthDesc + " " + day + ", " + year;
-var eventsToDisplay = document.querySelector('.events');
 
+var eventsToDisplay = document.querySelector('#eventsSection');
+var fightersToDisplay = document.querySelector('#fightersSection');
+var searchDiv = document.querySelector('#searchSection');
+var newsToDisplay = document.querySelector('#newsSection');
+var girlsToDisplay = document.querySelector('#girlsSection');
 
-  const nav = document.querySelector('#main');
-  const topOfNav = nav.offsetTop;
-    function fixNav() {
-            if (window.scrollY >= topOfNav) {
-                document.body.style.paddingTop = nav.offsetHeight;
-                document.body.classList.add('fixed-nav');
-            } else {
-                document.body.classList.remove('fixed-nav');
-                document.body.style.paddingTop = 0;
-            }
-        }
-        window.addEventListener('scroll', fixNav);
+function getWeight(name){
+	let returnValue;
+	switch(name){
+		case "Women_Featherweight": 
+			returnValue = 145;
+			break;
+		case "Flyweight": 
+			returnValue = 125;
+			break;
+		case "Bantamweight": 
+			returnValue = 135;
+			break;
+		case "Featherweight": 
+			returnValue = 145;
+			break;
+		case "Lightweight": 
+			returnValue = 155;
+			break;
+		case "Welterweight": 
+			returnValue = 170;
+			break;
+		case "Middleweight": 
+			returnValue = 185;
+			break;
+		case "Light_Heavyweight": 
+			returnValue = 205;
+			break;
+		case "Heavyweight": 
+			returnValue = 265;
+			break;
+		case "Women_Strawweight": 
+			returnValue = 115;
+			break;
+		case "Women_Bantamweight": 
+			returnValue = 135;
+			break;
 
+	}
+	return returnValue;
+}
 
-//Using axios
+//Using axios for title holders
 axios.get('https://crossorigin.me/http://ufc-data-api.ufc.com/api/v3/iphone/fighters/title_holders').then(function (response) {
 
 	var length = response.data.length;
 	var fighters = response.data;
 
+	//Fix the order
+	var temp = fighters.shift();
+	fighters.push(temp);
+
+	//Loop
 	for (var i = 0; i < length; i++) {
 
-		if (fighters[i].nickname == null) {
+			
+
+		if (!fighters[i].nickname) {
 			fighters[i].nickname = " ";
 		}
 
@@ -40,21 +94,46 @@ axios.get('https://crossorigin.me/http://ufc-data-api.ufc.com/api/v3/iphone/figh
 		var losses = fighters[i].losses;
 		var draws = fighters[i].draws;
 
-		table_body.innerHTML += '<tr><td><img src="' + fighters[i].profile_image + '" alt="" /></td><td>' + fighters[i].weight_class.replace("_", " ") + '<br></td><td>' + '<a href=' + fighters[i].link + ' target="_blank" >' + fighters[i].first_name + ' ' + fighters[i].last_name + '</a>' + '' + '<br>' + fighters[i].nickname + '</td><td>' + '<span class="wins">' + fighters[i].wins + '</span>' + '-' + '<span class="losses">' + fighters[i].losses + '</span>' + '-' + '<span class="draws">' + fighters[i].draws + '</span> (' + Math.floor(wins / (wins + losses + draws) * 100) + '%)';
-	}
+
+		
+
+
+		fightersToDisplay.innerHTML += `<div class="championProfile">
+											<div class="profilePic">
+												<img src="${fighters[i].profile_image}" alt="${fighters[i].first_name}">
+											</div>
+											<div class="profileData">
+												<div class="weightClass">
+													<img class="icon trophyIcon" src="./images/icons/trophy.svg" alt="Trophy Icon">
+													<p>&nbsp${fighters[i].weight_class.replace("_", " ")}&nbsp</p>
+													
+												</div>
+												<a href="${fighters[i].link}" target="_blank">${fighters[i].first_name} ${fighters[i].last_name}</a>
+												<p>${fighters[i].nickname}</p>
+												<p>${getWeight(fighters[i].weight_class)} lbs.</p>
+												<p>
+													<span class="wins">${fighters[i].wins}</span><span class="losses">-${fighters[i].losses}-</span>
+													<span class="draws">${fighters[i].draws}</span>
+												</p>
+											</div>
+										</div>`;
+	
+
+}
 }).catch(function (error) {
 	console.log(error);
 });
 
+//Using axios for events
 axios.get('https://crossorigin.me/http://ufc-data-api.ufc.com/api/v3/iphone/events').then(function (response2) {
 
 	var lengthEvents = response2.data.length;
 	var events = response2.data;
-	console.log(lengthEvents);
+	//console.log(lengthEvents);
 
 	for (i = 0; i < lengthEvents; i++) {
 
-		console.log(events[i].event_date);
+		//console.log(events[i].event_date);
 		var eventYear = events[i].event_date.slice(0, 4);
 		var eventMonth = events[i].event_date.slice(5, 7);
 		var eventDay = events[i].event_date.slice(8, 10);
@@ -65,9 +144,9 @@ axios.get('https://crossorigin.me/http://ufc-data-api.ufc.com/api/v3/iphone/even
    	console.log('coming this month');
    }*/
 			if (month == eventMonth && year == eventYear && day > eventDay) {
-				console.log('passed event this month');
+				//console.log('passed event this month');
 			} else {
-				console.log('coming on the next months');
+				//console.log('coming on the next months');
 
 				if (events[i].trailerurl == null) {
 					events[i].trailerurl = "#";

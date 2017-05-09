@@ -8,6 +8,7 @@ const babel = require('gulp-babel');
 const imagemin = require('gulp-imagemin');
 const size = require('gulp-size');
 const browserSync = require('browser-sync').create();
+const changed = require('gulp-changed');
 
 //CSS FUNCTION
 gulp.task('css', function() {
@@ -50,6 +51,7 @@ gulp.task('js', function() {
 
 gulp.task('img', function() {
     return gulp.src('./images/original/*')
+        .pipe(changed('./images/'))
         .pipe(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true }))
         .pipe(size())
         .pipe(gulp.dest('./images/'))
