@@ -14,7 +14,7 @@ function fixNav() {
 window.addEventListener('scroll', fixNav);
 
 
-
+//Today's Date
 var todayDate = document.querySelector('#date');
 var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 var today = new Date();
@@ -24,11 +24,19 @@ var monthDesc = months[month - 1];
 var year = today.getFullYear();
 todayDate.innerHTML = monthDesc + " " + day + ", " + year;
 
+//Sections to add data
 var eventsToDisplay = document.querySelector('#eventsSection');
 var fightersToDisplay = document.querySelector('#fightersSection');
 var searchDiv = document.querySelector('#searchSection');
-var newsToDisplay = document.querySelector('#newsSection');
+var newsToDisplay = document.querySelector('#newsList');
 var girlsToDisplay = document.querySelector('#girlsSection');
+
+//Loaders
+const fightersLoad = document.querySelector('.fightersLoad');
+const eventsLoad = document.querySelector('.eventsLoad');
+const newsLoad = document.querySelector('.newsLoad');
+
+//Helper Functions
 
 function getWeight(name){
 	let returnValue;
@@ -74,6 +82,8 @@ function getWeight(name){
 //Using axios for title holders
 axios.get('https://crossorigin.me/http://ufc-data-api.ufc.com/api/v3/iphone/fighters/title_holders').then(function (response) {
 
+	
+
 	var length = response.data.length;
 	var fighters = response.data;
 
@@ -118,8 +128,10 @@ axios.get('https://crossorigin.me/http://ufc-data-api.ufc.com/api/v3/iphone/figh
 	
 
 }
+	fightersLoad.style.display = "none";
 }).catch(function (error) {
 	console.log(error);
+	fightersToDisplay.innerHTML += `There has been an error retrieving data => ${error}`;
 });
 
 //Using axios for events
@@ -127,18 +139,22 @@ axios.get('https://crossorigin.me/http://ufc-data-api.ufc.com/api/v3/iphone/even
 
 	var lengthEvents = response2.data.length;
 	var events = response2.data;
+	
+	
 	//console.log(lengthEvents);
 
-	for (i = 0; i < lengthEvents; i++) {
+	for (var i = 0; i < lengthEvents ; i++) {
 
+		
 		//console.log(events[i].event_date);
 		var eventYear = events[i].event_date.slice(0, 4);
 		var eventMonth = events[i].event_date.slice(5, 7);
 		var eventDay = events[i].event_date.slice(8, 10);
 
-		if (month <= eventMonth && year <= eventYear) {
+			
 
-			/*if(month == eventMonth && year == eventYear && day <= eventDay){
+			if(eventYear > year || (month <= eventMonth && year <= eventYear) ){
+				/*if(month == eventMonth && year == eventYear && day <= eventDay){
    	console.log('coming this month');
    }*/
 			if (month == eventMonth && year == eventYear && day > eventDay) {
@@ -150,15 +166,67 @@ axios.get('https://crossorigin.me/http://ufc-data-api.ufc.com/api/v3/iphone/even
 					events[i].trailerurl = "#";
 				}
 
-				eventsToDisplay.innerHTML = '<div class="card"><img src="' + events[i].feature_image + '" alt="" /><div class="details"><h4>' + events[i].base_title + '</h4><h5>' + events[i].title_tag_line + '</h5><h6>' + events[i].arena + '</h6><h6>' + events[i].location + '</h6></div><div class="details"><span>' + months[eventMonth - 1] + ' ' + eventDay + '+,' + eventYear + '</span><a href="' + events[i].ticketurl + '"><i class="fa fa-ticket" aria-hidden="true"></i>Tickets</a><a href="' + events[i].trailerurl + '"><i class="fa fa-video-camera" aria-hidden="true"></i> Trailer</a></div></div>' + eventsToDisplay.innerHTML;
-			}
+				const defaultImage = "http://imagec.ufc.com/http%253A%252F%252Fmedia.ufc.tv%252Ffeatures%252F019907_WEB_EventPlaceholderRebrand_PPV.jpg?-mw500-mh500-tc1";
+				if(events[i].feature_image == defaultImage){
+					events[i].feature_image = "../images/placeholder_event.jpg";
+				}
+					
+				eventsToDisplay.innerHTML = `<div class="eventProfile">
+												<div class="eventPic">
+													<img src="${events[i].feature_image}" alt="${events[i].base_title}" />
+												</div>
+												<div class="eventData">
+													<h4>${events[i].base_title}</h4>
+													<h5>${events[i].title_tag_line}</h5>
+													<p>${events[i].arena}, ${events[i].location}</p>
+													<p>${months[eventMonth - 1]} ${eventDay}, ${eventYear}</p>
+													<div class="extraInfo">
+														<a href="${events[i].ticketurl}"><img class="icon" src="../images/icons/ticket.svg" alt="Ticket Icon"/>&nbsp&nbspTickets</a>
+														<a href="${events[i].trailerurl}"><img class="icon" src="../images/icons/video-camera.svg" alt="Video Icon"/>&nbsp&nbspTrailer</a>
+													</div>
+
+												</div>
+											</div>` + eventsToDisplay.innerHTML;
+
+				}
 		} else {
 			//console.log('passed event');
 			i = lengthEvents;
 		}
+
+			
 	}
 
-	for (var i = 0; i < lengthEvents; i++) {}
+	eventsLoad.style.display = "none";
 }).catch(function (error) {
 	console.log(error);
+	eventsToDisplay.innerHTML += `There has been an error retrieving data => ${error}`;
+});
+
+
+axios.get('https://crossorigin.me/http://ufc-data-api.ufc.com/api/v3/iphone/news').then(function (response3) {
+
+	var lengthNews = response3.data.length;
+	var news = response3.data;
+	
+	
+	//console.log(lengthEvents);
+
+	for (var i = 0; i < 12 ; i++) {
+
+		console.log(news[i].title);
+		newsToDisplay.innerHTML += `<li class="newsBullet">
+										<a href="http://www.ufc.com/news/${news[i].url_name}" target="_blank">
+											${news[i].title}
+										</a>
+										<span>
+											&nbsp&nbsp${news[i].author ? news[i].author : "By UFC Staff"}
+										</span>
+									</li>`;
+			
+	}
+	newsLoad.style.display = "none";
+}).catch(function (error) {
+	console.log(error);
+	eventsToDisplay.innerHTML += `There has been an error retrieving data => ${error}`;
 });

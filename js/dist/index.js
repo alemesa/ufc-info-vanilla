@@ -15,6 +15,7 @@ function fixNav() {
 }
 window.addEventListener('scroll', fixNav);
 
+//Today's Date
 var todayDate = document.querySelector('#date');
 var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 var today = new Date();
@@ -24,11 +25,19 @@ var monthDesc = months[month - 1];
 var year = today.getFullYear();
 todayDate.innerHTML = monthDesc + " " + day + ", " + year;
 
+//Sections to add data
 var eventsToDisplay = document.querySelector('#eventsSection');
 var fightersToDisplay = document.querySelector('#fightersSection');
 var searchDiv = document.querySelector('#searchSection');
-var newsToDisplay = document.querySelector('#newsSection');
+var newsToDisplay = document.querySelector('#newsList');
 var girlsToDisplay = document.querySelector('#girlsSection');
+
+//Loaders
+var fightersLoad = document.querySelector('.fightersLoad');
+var eventsLoad = document.querySelector('.eventsLoad');
+var newsLoad = document.querySelector('.newsLoad');
+
+//Helper Functions
 
 function getWeight(name) {
 	var returnValue = void 0;
@@ -94,8 +103,10 @@ axios.get('https://crossorigin.me/http://ufc-data-api.ufc.com/api/v3/iphone/figh
 
 		fightersToDisplay.innerHTML += '<div class="championProfile">\n\t\t\t\t\t\t\t\t\t\t\t<div class="profilePic">\n\t\t\t\t\t\t\t\t\t\t\t\t<img src="' + fighters[i].profile_image + '" alt="' + fighters[i].first_name + '">\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t<div class="profileData">\n\t\t\t\t\t\t\t\t\t\t\t\t<div class="weightClass">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<img class="icon trophyIcon" src="./images/icons/trophy.svg" alt="Trophy Icon">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<p>&nbsp' + fighters[i].weight_class.replace("_", " ") + '&nbsp</p>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t<a href="' + fighters[i].link + '" target="_blank">' + fighters[i].first_name + ' ' + fighters[i].last_name + '</a>\n\t\t\t\t\t\t\t\t\t\t\t\t<p>' + fighters[i].nickname + '</p>\n\t\t\t\t\t\t\t\t\t\t\t\t<p>' + getWeight(fighters[i].weight_class) + ' lbs.</p>\n\t\t\t\t\t\t\t\t\t\t\t\t<p>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<span class="wins">' + fighters[i].wins + '</span><span class="losses">-' + fighters[i].losses + '-</span>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<span class="draws">' + fighters[i].draws + '</span>\n\t\t\t\t\t\t\t\t\t\t\t\t</p>\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t</div>';
 	}
+	fightersLoad.style.display = "none";
 }).catch(function (error) {
 	console.log(error);
+	fightersToDisplay.innerHTML += 'There has been an error retrieving data => ' + error;
 });
 
 //Using axios for events
@@ -103,19 +114,19 @@ axios.get('https://crossorigin.me/http://ufc-data-api.ufc.com/api/v3/iphone/even
 
 	var lengthEvents = response2.data.length;
 	var events = response2.data;
+
 	//console.log(lengthEvents);
 
-	for (i = 0; i < lengthEvents; i++) {
+	for (var i = 0; i < lengthEvents; i++) {
 
 		//console.log(events[i].event_date);
 		var eventYear = events[i].event_date.slice(0, 4);
 		var eventMonth = events[i].event_date.slice(5, 7);
 		var eventDay = events[i].event_date.slice(8, 10);
 
-		if (month <= eventMonth && year <= eventYear) {
-
+		if (eventYear > year || month <= eventMonth && year <= eventYear) {
 			/*if(month == eventMonth && year == eventYear && day <= eventDay){
-   	console.log('coming this month');
+   console.log('coming this month');
    }*/
 			if (month == eventMonth && year == eventYear && day > eventDay) {
 				//console.log('passed event this month');
@@ -126,7 +137,12 @@ axios.get('https://crossorigin.me/http://ufc-data-api.ufc.com/api/v3/iphone/even
 					events[i].trailerurl = "#";
 				}
 
-				eventsToDisplay.innerHTML = '<div class="card"><img src="' + events[i].feature_image + '" alt="" /><div class="details"><h4>' + events[i].base_title + '</h4><h5>' + events[i].title_tag_line + '</h5><h6>' + events[i].arena + '</h6><h6>' + events[i].location + '</h6></div><div class="details"><span>' + months[eventMonth - 1] + ' ' + eventDay + '+,' + eventYear + '</span><a href="' + events[i].ticketurl + '"><i class="fa fa-ticket" aria-hidden="true"></i>Tickets</a><a href="' + events[i].trailerurl + '"><i class="fa fa-video-camera" aria-hidden="true"></i> Trailer</a></div></div>' + eventsToDisplay.innerHTML;
+				var defaultImage = "http://imagec.ufc.com/http%253A%252F%252Fmedia.ufc.tv%252Ffeatures%252F019907_WEB_EventPlaceholderRebrand_PPV.jpg?-mw500-mh500-tc1";
+				if (events[i].feature_image == defaultImage) {
+					events[i].feature_image = "../images/placeholder_event.jpg";
+				}
+
+				eventsToDisplay.innerHTML = '<div class="eventProfile">\n\t\t\t\t\t\t\t\t\t\t\t\t<div class="eventPic">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<img src="' + events[i].feature_image + '" alt="' + events[i].base_title + '" />\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t<div class="eventData">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<h4>' + events[i].base_title + '</h4>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<h5>' + events[i].title_tag_line + '</h5>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<p>' + events[i].arena + ', ' + events[i].location + '</p>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<p>' + months[eventMonth - 1] + ' ' + eventDay + ', ' + eventYear + '</p>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<div class="extraInfo">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href="' + events[i].ticketurl + '"><img class="icon" src="../images/icons/ticket.svg" alt="Ticket Icon"/>&nbsp&nbspTickets</a>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href="' + events[i].trailerurl + '"><img class="icon" src="../images/icons/video-camera.svg" alt="Video Icon"/>&nbsp&nbspTrailer</a>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t</div>' + eventsToDisplay.innerHTML;
 			}
 		} else {
 			//console.log('passed event');
@@ -134,7 +150,26 @@ axios.get('https://crossorigin.me/http://ufc-data-api.ufc.com/api/v3/iphone/even
 		}
 	}
 
-	for (var i = 0; i < lengthEvents; i++) {}
+	eventsLoad.style.display = "none";
 }).catch(function (error) {
 	console.log(error);
+	eventsToDisplay.innerHTML += 'There has been an error retrieving data => ' + error;
+});
+
+axios.get('https://crossorigin.me/http://ufc-data-api.ufc.com/api/v3/iphone/news').then(function (response3) {
+
+	var lengthNews = response3.data.length;
+	var news = response3.data;
+
+	//console.log(lengthEvents);
+
+	for (var i = 0; i < 12; i++) {
+
+		console.log(news[i].title);
+		newsToDisplay.innerHTML += '<li class="newsBullet">\n\t\t\t\t\t\t\t\t\t\t<a href="http://www.ufc.com/news/' + news[i].url_name + '" target="_blank">\n\t\t\t\t\t\t\t\t\t\t\t' + news[i].title + '\n\t\t\t\t\t\t\t\t\t\t</a>\n\t\t\t\t\t\t\t\t\t\t<span>\n\t\t\t\t\t\t\t\t\t\t\t&nbsp&nbsp' + (news[i].author ? news[i].author : "By UFC Staff") + '\n\t\t\t\t\t\t\t\t\t\t</span>\n\t\t\t\t\t\t\t\t\t</li>';
+	}
+	newsLoad.style.display = "none";
+}).catch(function (error) {
+	console.log(error);
+	eventsToDisplay.innerHTML += 'There has been an error retrieving data => ' + error;
 });
