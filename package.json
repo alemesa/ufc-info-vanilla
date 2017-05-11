@@ -29,7 +29,9 @@
     "gulp-plumber": "^1.1.0",
     "gulp-sass": "^3.1.0",
     "gulp-size": "^2.1.0",
-    "gulp-sourcemaps": "^2.6.0"
+    "gulp-sourcemaps": "^2.6.0",
+    "gulp-surge": "^0.1.0",
+    "surge": "^0.19.0"
   },
   "dependencies": {
     "jump.js": "^1.0.2"

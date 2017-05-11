@@ -9,6 +9,7 @@ const imagemin = require('gulp-imagemin');
 const size = require('gulp-size');
 const browserSync = require('browser-sync').create();
 const changed = require('gulp-changed');
+const surge = require('gulp-surge');
 
 //CSS FUNCTION
 gulp.task('css', function() {
@@ -72,6 +73,13 @@ gulp.task('serve', function() {
         }
     });
     gulp.watch('*.html').on('change', browserSync.reload);
+});
+
+gulp.task('deploy',function () {
+  return surge({
+    project: '.',         // Path to your static build directory
+    domain: 'ufc-ranking.surge.sh'  // Your domain or Surge subdomain
+  });
 });
 
 gulp.task('default', ['css', 'js', 'img', 'watch', 'serve']);

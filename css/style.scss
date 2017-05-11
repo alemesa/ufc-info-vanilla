@@ -251,14 +251,16 @@ nav a {
 	flex-wrap:wrap;
 	.championProfile{
 		width:80%;
-		flex:1 1 80%;
+		flex:0 1 80%;
 		display:flex;
+		margin:0 auto;
 	  padding: 1em;
 		margin:8px;
     box-shadow: 0 0 0 3px rgba(38,38,38,0.1);
 	.profilePic{
 		margin-top:1em;
 		img {
+			width:60%;
 			box-shadow: 1px 1px 2px #aaa;
 		}
 		width:40%;
