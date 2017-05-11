@@ -21,11 +21,11 @@
 <nav id="main">
     <ul>
       <li class="logo"><a href="#">UFC</a></li>
-      <li><a href="#">Home</a></li>
-      <li><a href="#anchorTitles">Titles</a></li>
-      <li><a href="#anchorEvents">Events</a></li>
-      <li><a href="#anchorSearch">Search</a></li>
-      <li><a href="#anchorNews">News</a></li>
+      <li><a class="smoothScroll" href="#">Home</a></li>
+      <li><a class="smoothScroll" href="#anchorTitles">Titles</a></li>
+      <li><a class="smoothScroll" href="#anchorEvents">Events</a></li>
+      <li><a class="smoothScroll" href="#anchorSearch">Search</a></li>
+      <li><a class="smoothScroll" href="#anchorNews">News</a></li>
 			<!--<li><a href="#anchorGirls">Girls</a></li>-->
     </ul>
 </nav>
@@ -83,9 +83,17 @@
 
 	<h6 id="anchorSearch" class="title">Search Fighters</h6>
 	<hr>
+	<div id="formDiv">
+		<form class="search-form" onsubmit="return false">
+				<input type="text" class="search" placeholder="Name or Last Name">
+				<ul class="suggestions">
+					<li>Filter by name or last name </li>
+				</ul>
+			</form>
+	</div>
 	<div id="searchSection">
 		<!--Search Section Here-->
-		<input type="" name="" value="">
+		 
 	</div>
 
 	<h6 id="anchorNews" class="title">Latest News</h6>
@@ -115,9 +123,24 @@
 	
 	</div>
 
-	<footer>
-		
-	</footer>
+	<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <p>
+        <strong>UFC Info API</strong> by <a href="https://alemesa1991.github.io/">Alejandro Mesa</a>. The source code is licensed
+        <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+        is provided by <a href="http://www.ufc.com/">UFC</a>. Made to showcase web development skills and not for comercial use.
+      </p>
+	  <div class="socialIcons">
+		  <a href="https://github.com/alemesa1991"><img class="footerIcon" src="./images/github-icon.svg" alt="Github Icon"></a>
+		  <a href="https://twitter.com/alelikesramen"><img class="footerIcon" src="./images/twitter.svg" alt="Twitter Icon"></a>
+		  <a href="https://codepen.io/alemesa1991/"><img class="footerIcon" src="./images/codepen-icon.svg" alt="Codepen Icon"></a>
+	  </div>
+	  <p>Made with a lot of &nbsp<img class="icon" src="./images/icons/coffee.svg" alt="Coffee Icon"></p>
+     
+    </div>
+  </div>
+</footer>
 	<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.3/axios.min.js'></script>
 	<script src="js/dist/index.js"></script>

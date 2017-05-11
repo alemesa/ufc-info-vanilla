@@ -1,5 +1,7 @@
 'use strict';
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 /*Header Transition*/
 var nav = document.querySelector('#main');
 var topOfNav = nav.offsetTop;
@@ -173,3 +175,67 @@ axios.get('https://crossorigin.me/http://ufc-data-api.ufc.com/api/v3/iphone/news
 	console.log(error);
 	eventsToDisplay.innerHTML += 'There has been an error retrieving data => ' + error;
 });
+
+//Search Implementation
+var endpoint = "https://crossorigin.me/http://ufc-data-api.ufc.com/api/v3/iphone/fighters";
+
+var names = [];
+
+fetch(endpoint).then(function (blob) {
+	return blob.json();
+}).then(function (data) {
+	return names.push.apply(names, _toConsumableArray(data));
+});
+
+function findMatches(wordToMatch, names) {
+	return names.filter(function (fighter) {
+		// here we need to figure out if the city or state matches what was searched
+		var regex = new RegExp(wordToMatch, 'gi');
+		return fighter.first_name.match(regex) || fighter.last_name.match(regex);
+	});
+}
+
+function displayMatches() {
+	var _this = this;
+
+	var matchArray = findMatches(this.value, names);
+	var html = matchArray.map(function (fighter) {
+		var regex = new RegExp(_this.value, 'gi');
+		//const firstName = fighter.first_name.replace(regex, `<span class="hl">${this.value}</span>`);
+		//const lastName = fighter.last_name.replace(regex, `<span class="hl">${this.value}</span>`);
+		var firstName = fighter.first_name;
+		var lastName = fighter.last_name;
+		var id = fighter.id;
+		return '\n      <li >\n        <a  class="nameFighter" data-id="' + id + '">' + firstName + ', ' + lastName + '</a>\n      </li>\n    ';
+	}).join('');
+	suggestions.innerHTML = html;
+}
+
+function getFighters() {
+	var fighterQuery = document.querySelectorAll('.nameFighter');
+	console.log(fighterQuery);
+
+	fighterQuery.forEach(function (fighter) {
+		return fighter.addEventListener("click", function displayFighter(e) {
+			document.querySelector(".search-form").value = "";
+			suggestions.innerHTML = "";
+
+			console.log(this.dataset.id);
+			axios.get('https://crossorigin.me/http://ufc-data-api.ufc.com/api/v3/iphone/fighters/' + this.dataset.id + '.json').then(function (response4) {
+				console.log(response4);
+				var searchFighter = response4.data;
+
+				searchDiv.innerHTML = '<div class="championProfile">\n\t\t\t\t\t\t\t\t\t\t\t<div class="profilePic">\n\t\t\t\t\t\t\t\t\t\t\t\t<img src="' + searchFighter.profile_image + '" alt="' + searchFighter.first_name + '">\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t<div class="profileData">\n\t\t\t\t\t\t\t\t\t\t\t\t<div class="weightClass">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<p>Rank: (' + (searchFighter.rank ? searchFighter.rank : "") + ')</p>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<p>&nbsp' + searchFighter.weight_class.replace("_", " ") + '&nbsp</p>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t<a href="' + searchFighter.link + '" target="_blank">' + searchFighter.first_name + ' ' + searchFighter.last_name + '</a>\n\t\t\t\t\t\t\t\t\t\t\t\t<p>' + (searchFighter.nickname ? searchFighter.nickname : "") + '</p>\n\t\t\t\t\t\t\t\t\t\t\t\t<p>' + searchFighter.city_residing + ', ' + searchFighter.country_residing + '</p>\n\t\t\t\t\t\t\t\t\t\t\t\t<p>' + getWeight(searchFighter.weight_class) + ' lbs.</p>\n\t\t\t\t\t\t\t\t\t\t\t\t<p>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<span class="wins">' + searchFighter.wins + '</span>-<span class="losses">' + searchFighter.losses + '</span>-<span class="draws">' + searchFighter.draws + '</span>\n\t\t\t\t\t\t\t\t\t\t\t\t</p>\n\t\t\t\t\t\t\t\t\t\t\t\t<p>Height: ' + searchFighter.height_ft + '</p>\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t<div class="specificData">\n\t\t\t\t\t\t\t\t\t\t\t\t<p>' + (searchFighter.strengths ? 'Strengths: "' + searchFighter.strengths + '"' : "") + '</p>\n\t\t\t\t\t\t\t\t\t\t\t\t<p>Wins: ' + searchFighter.wins + '</p>\n\t\t\t\t\t\t\t\t\t\t\t\t<p>KO TKO Wins: ' + searchFighter.ko_tko_wins + '</p>\n\t\t\t\t\t\t\t\t\t\t\t\t<p>Submission Wins: ' + searchFighter.submission_wins + '</p>\n\t\t\t\t\t\t\t\t\t\t\t\t<p>Decision Wins: ' + searchFighter.decision_wins + '</p>\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t';
+			}).catch(function (error) {
+				console.log(error);
+				eventsToDisplay.innerHTML += 'There has been an error retrieving data => ' + error;
+			});
+		}, false);
+	});
+}
+
+var searchInput = document.querySelector('.search');
+var suggestions = document.querySelector('.suggestions');
+
+searchInput.addEventListener('keyup', displayMatches);
+searchInput.addEventListener('keyup', getFighters);

@@ -193,7 +193,7 @@ nav a {
 	align-items:center;
 	justify-content:space-around;
 	flex-wrap:wrap;
-	line-height: 1.5;
+	line-height: 1.7;
 }
 //Events Profile
 .eventProfile{
@@ -232,7 +232,7 @@ nav a {
 }
 
 #newsSection{
-	
+	line-height: 1.5;
 	margin:0 auto;
 	width:80%;
 	ul{
@@ -243,7 +243,111 @@ nav a {
 	}
 }
 
+#searchSection{
+	display:flex;
+	flex-direction:row;
+	align-items:center;
+	justify-content:space-around;
+	flex-wrap:wrap;
+	.championProfile{
+		width:80%;
+		flex:1 1 80%;
+		display:flex;
+	  padding: 1em;
+		margin:8px;
+    box-shadow: 0 0 0 3px rgba(38,38,38,0.1);
+	.profilePic{
+		margin-top:1em;
+		img {
+			box-shadow: 1px 1px 2px #aaa;
+		}
+		width:40%;
+		padding:5px;
+	}
+	.profileData{
+		margin-top:1em;
+		padding-left: 30px;
+		display:flex;
+		flex-direction:column;
+		justify-content:center;
+		.weightClass{
+			display:flex;
+			flex-direction:row;
+			flex-wrap:wrap;
+			justify-content: flex-start;
+			align-items: center;
+		}
+	}
+}
+	.specificData{
+		margin-top:1em;
+		padding-left: 30px;
+		display:flex;
+		flex-direction:column;
+		justify-content:center;
+	}
+}
+
+/*Search*/
+#formDiv{
+	input {
+      width: 100%;
+      padding:10px;
+    }
+
+    .search-form {
+      max-width:400px;
+      margin:20px auto;
+    }
+	.suggestions {
+      margin: 0;
+      padding: 0;
+      position: relative;
+      /*perspective:20px;*/
+    }
+		.suggestions li {
+      background:white;
+      list-style: none;
+      border-bottom: 1px solid #D8D8D8;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.14);
+      margin:0;
+      padding:15px;
+      transition:background 0.2s;
+      display:flex;
+      justify-content:space-between;
+      text-transform: capitalize;
+    }
+		input.search {
+      margin: 0;
+      text-align: center;
+      outline:0;
+      border: 5px solid #F7F7F7;
+      width: 120%;
+      left: -10%;
+      position: relative;
+      top: 10px;
+      z-index: 2;
+      border-radius: 5px;
+      box-shadow: 0 0 2px rgba(0, 0, 0, 0.12), inset 0 0 1px rgba(0, 0, 0, 0.19);
+    }
+}
+
 /*General*/
+.wins{
+	font-family:monospace;
+	font-weight:700;
+	color:#4CAF50;
+}
+.draws{
+	font-family:monospace;
+	font-weight:700;
+	color:#3F51B5;
+}
+.losses{
+	font-family:monospace;
+	font-weight:700;
+	color:#f44336;
+}
 .title{
 	font-weight:600;
 	font-style:italic;
@@ -302,7 +406,29 @@ nav a {
 
 
 
-
+.footer{
+	margin:1em 0 1em 0;
+	padding:1em 1em;
+	.icon{
+		vertical-align: middle;
+	}
+	
+	.socialIcons{
+		display:flex;
+		flex-direction:row;
+		justify-content: center;
+		align-items: center;
+		a{
+			margin:1em;
+		}
+		a:hover{
+	border-bottom: 1px solid transparent;
+		}
+		.footerIcon{
+			width:30px;
+		}
+	}
+}
 
 
 
@@ -329,6 +455,15 @@ body::-webkit-scrollbar-track {
    .championProfile{
 		flex:0 1 80%;
 	 }
+	 #searchSection{
+		.championProfile{
+			flex:1 1 90%;
+			flex-direction:column;
+			justify-content: center;
+			align-items:center;
+			margin:0 auto;
+		}
+	}
 }
 
 @media only screen and (max-width: 1200px) {

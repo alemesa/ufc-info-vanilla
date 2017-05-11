@@ -230,3 +230,99 @@ axios.get('https://crossorigin.me/http://ufc-data-api.ufc.com/api/v3/iphone/news
 	console.log(error);
 	eventsToDisplay.innerHTML += `There has been an error retrieving data => ${error}`;
 });
+
+//Search Implementation
+const endpoint = "https://crossorigin.me/http://ufc-data-api.ufc.com/api/v3/iphone/fighters";
+
+const names = [];
+
+fetch(endpoint)
+	.then(blob => blob.json())
+	.then(data => names.push(...data));
+
+
+function findMatches(wordToMatch, names) {
+  return names.filter(fighter => {
+    // here we need to figure out if the city or state matches what was searched
+    const regex = new RegExp(wordToMatch, 'gi');
+    return fighter.first_name.match(regex) || fighter.last_name.match(regex);
+  });
+}
+
+function displayMatches() {
+  const matchArray = findMatches(this.value, names);
+  const html = matchArray.map(fighter => {
+    const regex = new RegExp(this.value, 'gi');
+    //const firstName = fighter.first_name.replace(regex, `<span class="hl">${this.value}</span>`);
+    //const lastName = fighter.last_name.replace(regex, `<span class="hl">${this.value}</span>`);
+	const firstName = fighter.first_name;
+	const lastName = fighter.last_name;
+	const id = fighter.id;
+    return `
+      <li >
+        <a  class="nameFighter" data-id="${id}">${firstName}, ${lastName}</a>
+      </li>
+    `;
+  }).join('');
+  suggestions.innerHTML = html;
+}
+
+
+function getFighters(){
+	const fighterQuery = document.querySelectorAll('.nameFighter');
+	console.log(fighterQuery);
+
+	fighterQuery.forEach(fighter => fighter.addEventListener("click",function displayFighter(e){
+	document.querySelector(".search-form").value = "";
+	suggestions.innerHTML = "";
+	
+	console.log(this.dataset.id);
+	axios.get(`https://crossorigin.me/http://ufc-data-api.ufc.com/api/v3/iphone/fighters/${this.dataset.id}.json`).then(function (response4) {
+		console.log(response4);
+		var searchFighter = response4.data;
+
+		
+
+				searchDiv.innerHTML = `<div class="championProfile">
+											<div class="profilePic">
+												<img src="${searchFighter.profile_image}" alt="${searchFighter.first_name}">
+											</div>
+											<div class="profileData">
+												<div class="weightClass">
+													<p>Rank: (${searchFighter.rank ? searchFighter.rank : ""})</p>
+													<p>&nbsp${searchFighter.weight_class.replace("_", " ")}&nbsp</p>
+													
+												</div>
+												<a href="${searchFighter.link}" target="_blank">${searchFighter.first_name} ${searchFighter.last_name}</a>
+												<p>${searchFighter.nickname ? searchFighter.nickname : ""}</p>
+												<p>${searchFighter.city_residing}, ${searchFighter.country_residing}</p>
+												<p>${getWeight(searchFighter.weight_class)} lbs.</p>
+												<p>
+													<span class="wins">${searchFighter.wins}</span>-<span class="losses">${searchFighter.losses}</span>-<span class="draws">${searchFighter.draws}</span>
+												</p>
+												<p>Height: ${searchFighter.height_ft}</p>
+											</div>
+											<div class="specificData">
+												<p>${searchFighter.strengths ? 'Strengths: "' + searchFighter.strengths + '"' : ""}</p>
+												<p>Wins: ${searchFighter.wins}</p>
+												<p>KO TKO Wins: ${searchFighter.ko_tko_wins}</p>
+												<p>Submission Wins: ${searchFighter.submission_wins}</p>
+												<p>Decision Wins: ${searchFighter.decision_wins}</p>
+											</div>
+										</div>
+										`;
+	}).catch(function (error) {
+	console.log(error);
+	eventsToDisplay.innerHTML += `There has been an error retrieving data => ${error}`;
+});
+
+	},false));
+}
+
+const searchInput = document.querySelector('.search');
+const suggestions = document.querySelector('.suggestions');
+
+searchInput.addEventListener('keyup', displayMatches);
+searchInput.addEventListener('keyup', getFighters);
+
+

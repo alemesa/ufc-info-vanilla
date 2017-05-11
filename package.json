@@ -30,5 +30,8 @@
     "gulp-sass": "^3.1.0",
     "gulp-size": "^2.1.0",
     "gulp-sourcemaps": "^2.6.0"
+  },
+  "dependencies": {
+    "jump.js": "^1.0.2"
   }
 }
