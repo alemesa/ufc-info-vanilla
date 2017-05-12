@@ -184,7 +184,7 @@ nav a {
 		img {
 			box-shadow: 1px 1px 2px #aaa;
 		}
-		width:40%;
+		width:50%;
 		padding:5px;
 	}
 	.profileData {
@@ -477,6 +477,31 @@ body::-webkit-scrollbar-track {
 
 
 /*Media Queries*/
+@media only screen and (max-width: 490px) {
+	.championProfile {
+		flex-direction:column;
+		justify-content: center;
+		align-items:center;
+		.profilePic {
+		
+		width:80%;
+		padding:5px;
+	}
+	}
+	
+}
+
+@media only screen and (max-width: 650px) {
+	.eventProfile{
+		flex-direction:column;
+		justify-content: center;
+		align-items:center;
+		.eventPic{
+			width:80%;
+		padding:5px;
+		}
+	}
+}
 
 @media only screen and (max-width: 800px) {
 	.championProfile {
