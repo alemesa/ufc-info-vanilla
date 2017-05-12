@@ -1,149 +1,165 @@
 <!DOCTYPE html>
-<html >
+<html>
+
 <head>
-  <meta charset="UTF-8">
-  <title>UFC Info App</title>
-  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.css">	
+	<meta charset="UTF-8">
+	<meta name=viewport content="width=device-width, initial-scale=1">
+	<title>UFC Info App</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.css">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="icon" href="./images/logo.png">
-  
+
 </head>
 
 <body>
 
 
-<header>
-  <h1>UFC Info App</h1>
-</header>
+	<header>
+		<h1>UFC Info App</h1>
+	</header>
 
-<nav id="main">
-    <ul>
-      <li class="logo"><a href="#">UFC</a></li>
-      <li><a class="smoothScroll" href="#">Home</a></li>
-      <li><a class="smoothScroll" href="#anchorTitles">Titles</a></li>
-      <li><a class="smoothScroll" href="#anchorEvents">Events</a></li>
-      <li><a class="smoothScroll" href="#anchorSearch">Search</a></li>
-      <li><a class="smoothScroll" href="#anchorNews">News</a></li>
+	<nav id="main">
+		<ul>
+			<li class="logo"><a href="#">UFC</a></li>
+			<li><a href="#">Home</a></li>
+			<li><a href="#anchorTitles">Titles</a></li>
+			<li><a href="#anchorEvents">Events</a></li>
+			<li><a href="#anchorSearch">Search</a></li>
+			<li><a href="#anchorNews">News</a></li>
 			<!--<li><a href="#anchorGirls">Girls</a></li>-->
-    </ul>
-</nav>
+		</ul>
+	</nav>
 
 
-  
-<div class="site-wrap">
-	<h6 class="title firstTitle">Twitter News</h6>
-	<hr>
-	
-	
-	
-<!--Disclaimer-->
-<div class="disclaimer">
-	<span><span id="date"></span>  - This app depends on the up time of <a href="https://crossorigin.me/">crossorigin.me</a> and <a href="http://ufc-data-api.ufc.com">ufc.data.api</a></span>
-	
-	<span><img class="icon" src="./images/icons/flag.svg" alt="">&nbsp I'm doing this for fun and knowledge, it is not my intention to break any laws</span>
+
+	<div class="site-wrap">
+		<h6 class="title firstTitle">Twitter News</h6>
+		<hr>
 
 
-</div>
-	
-	
 
-	<div id="twitterSection" >
-		<!--Inserting Twitters Here-->
-		<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">The Fertittas bought the UFC for 2 million 15 years ago. They sell it for 4 billion. Greatest ROI in sports history. Remarkable.</p>&mdash; Ariel Helwani (@arielhelwani) <a href="https://twitter.com/arielhelwani/status/752371563337490432">July 11, 2016</a></blockquote>
-		<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Congrats <a href="https://twitter.com/ufc">@ufc</a> for a spectacular NYC show! Respect to the king <a href="https://twitter.com/TheNotoriousMMA">@TheNotoriousMMA</a>. Showmanship and skills on a precedent setting level. <a href="https://twitter.com/hashtag/UFC205?src=hash">#UFC205</a></p>&mdash; Dwayne Johnson (@TheRock) <a href="https://twitter.com/TheRock/status/797698368973606912">November 13, 2016</a></blockquote>
-		<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">I&#39;m thankful for the cheese.</p>&mdash; Conor McGregor (@TheNotoriousMMA) <a href="https://twitter.com/TheNotoriousMMA/status/854774392257224704">April 19, 2017</a></blockquote>
-		<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Canelo was on a completely different level tonight. It was impressive and his skills were very… <a href="https://t.co/Qr6cxIMk3E">https://t.co/Qr6cxIMk3E</a></p>&mdash; Joe Rogan (@joerogan) <a href="https://twitter.com/joerogan/status/861118239262113792">May 7, 2017</a></blockquote>
-		<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">10 down, 1 to go. <a href="https://twitter.com/MightyMouseUFC">@MightyMouseUFC</a> on the way to becoming the GOAT! Gotta be amazing hearing that from <a href="https://twitter.com/SugarRayLeonard">@SugarRayLeonard</a>!!! <a href="https://t.co/jwwkHdiJAV">https://t.co/jwwkHdiJAV</a></p>&mdash; Dana White (@danawhite) <a href="https://twitter.com/danawhite/status/854033590434185216">April 17, 2017</a></blockquote>
-		<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Luke Rockhold on <a href="https://twitter.com/hashtag/themmahour?src=hash">#themmahour</a> calls for Romero/Whittaker/Mousasi to all refuse to fight unless an interim MW title is created.</p>&mdash; Shaheen Al-Shatti (@shaunalshatti) <a href="https://twitter.com/shaunalshatti/status/861633439950266368">May 8, 2017</a></blockquote>
+		<!--Disclaimer-->
+		<div class="disclaimer">
+			<span><span id="date"></span> - This app depends on the up time of <a href="https://crossorigin.me/">crossorigin.me</a>			and <a href="http://ufc-data-api.ufc.com">ufc.data.api</a></span>
+
+			<span><img class="icon" src="./images/icons/flag.svg" alt="">&nbsp I'm doing this for fun and knowledge, it is not my intention to break any laws</span>
 
 
-	</div>
-	
-	<h6 id="anchorTitles" class="title">Title Holders</h6>
-	<hr>
-	<div class="loaderContainer fightersLoad"><img class="loader" src="./images/icons/reload.svg" alt=""> Loading Fighters</div>
-	
-	
-
-	<div id="fightersSection">
-		<!--Inserting Fighters Here-->
 		</div>
 
-	<h6 id="anchorEvents" class="title">Coming Events</h6>
-	<hr>	
-	<div class="loaderContainer eventsLoad"><img class="loader" src="./images/icons/reload.svg" alt=""> Loading Events</div>
-	<div id="eventsSection">
 
-		
 
-		<!--Inserting Events Here-->
-	</div>
+		<div id="twitterSection">
+			<!--Inserting Twitters Here-->
+			<blockquote class="twitter-tweet" data-lang="en">
+				<p lang="en" dir="ltr">The Fertittas bought the UFC for 2 million 15 years ago. They sell it for 4 billion. Greatest ROI in sports history.
+					Remarkable.</p>&mdash; Ariel Helwani (@arielhelwani) <a href="https://twitter.com/arielhelwani/status/752371563337490432">July 11, 2016</a></blockquote>
+			<blockquote class="twitter-tweet" data-lang="en">
+				<p lang="en" dir="ltr">Congrats <a href="https://twitter.com/ufc">@ufc</a> for a spectacular NYC show! Respect to the king <a href="https://twitter.com/TheNotoriousMMA">@TheNotoriousMMA</a>.
+					Showmanship and skills on a precedent setting level. <a href="https://twitter.com/hashtag/UFC205?src=hash">#UFC205</a></p>&mdash;
+				Dwayne Johnson (@TheRock) <a href="https://twitter.com/TheRock/status/797698368973606912">November 13, 2016</a></blockquote>
+			<blockquote class="twitter-tweet" data-lang="en">
+				<p lang="en" dir="ltr">I&#39;m thankful for the cheese.</p>&mdash; Conor McGregor (@TheNotoriousMMA) <a href="https://twitter.com/TheNotoriousMMA/status/854774392257224704">April 19, 2017</a></blockquote>
+			<blockquote class="twitter-tweet" data-lang="en">
+				<p lang="en" dir="ltr">Canelo was on a completely different level tonight. It was impressive and his skills were very… <a href="https://t.co/Qr6cxIMk3E">https://t.co/Qr6cxIMk3E</a></p>&mdash;
+				Joe Rogan (@joerogan) <a href="https://twitter.com/joerogan/status/861118239262113792">May 7, 2017</a></blockquote>
+			<blockquote class="twitter-tweet" data-lang="en">
+				<p lang="en" dir="ltr">10 down, 1 to go. <a href="https://twitter.com/MightyMouseUFC">@MightyMouseUFC</a> on the way to becoming the GOAT! Gotta
+					be amazing hearing that from <a href="https://twitter.com/SugarRayLeonard">@SugarRayLeonard</a>!!! <a href="https://t.co/jwwkHdiJAV">https://t.co/jwwkHdiJAV</a></p>&mdash;
+				Dana White (@danawhite) <a href="https://twitter.com/danawhite/status/854033590434185216">April 17, 2017</a></blockquote>
+			<blockquote class="twitter-tweet" data-lang="en">
+				<p lang="en" dir="ltr">Luke Rockhold on <a href="https://twitter.com/hashtag/themmahour?src=hash">#themmahour</a> calls for Romero/Whittaker/Mousasi
+					to all refuse to fight unless an interim MW title is created.</p>&mdash; Shaheen Al-Shatti (@shaunalshatti) <a href="https://twitter.com/shaunalshatti/status/861633439950266368">May 8, 2017</a></blockquote>
 
-	<h6 id="anchorSearch" class="title">Search Fighters</h6>
-	<hr>
-	<div id="formDiv">
-		<form class="search-form" onsubmit="return false">
+
+		</div>
+
+		<h6 id="anchorTitles" class="title">Title Holders</h6>
+		<hr>
+		<div class="loaderContainer fightersLoad"><img class="loader" src="./images/icons/reload.svg" alt=""> Loading Fighters</div>
+
+
+
+		<div id="fightersSection">
+			<!--Inserting Fighters Here-->
+		</div>
+
+		<h6 id="anchorEvents" class="title">Coming Events</h6>
+		<hr>
+		<div class="loaderContainer eventsLoad"><img class="loader" src="./images/icons/reload.svg" alt=""> Loading Events</div>
+		<div id="eventsSection">
+
+
+
+			<!--Inserting Events Here-->
+		</div>
+
+		<h6 id="anchorSearch" class="title">Search Fighters</h6>
+		<hr>
+		<div id="formDiv">
+			<form class="search-form" onsubmit="return false">
 				<input type="text" class="search" placeholder="Name or Last Name">
 				<ul class="suggestions">
 					<li>Filter by name or last name </li>
 				</ul>
 			</form>
-	</div>
-	<div id="searchSection">
-		<!--Search Section Here-->
-		 
-	</div>
+		</div>
+		<div id="searchSection">
+			<!--Search Section Here-->
 
-	<h6 id="anchorNews" class="title">Latest News</h6>
-	<hr>
-	<div class="loaderContainer newsLoad"><img class="loader" src="./images/icons/reload.svg" alt=""> Loading News</div>
-	<div id="newsSection">
-		<ul id="newsList">
+		</div>
+
+		<h6 id="anchorNews" class="title">Latest News</h6>
+		<hr>
+		<div class="loaderContainer newsLoad"><img class="loader" src="./images/icons/reload.svg" alt=""> Loading News</div>
+		<div id="newsSection">
+			<ul id="newsList">
 
 
-		</ul>
-		<!--News Section Here-->
-	</div>
+			</ul>
+			<!--News Section Here-->
+		</div>
 
- <!--
+		<!--
 	<h6 id="anchorGirls" class="title">Octagon Girls</h6>
 	<hr>
 	<div id="girlsSection">
 	</div>
 !-->
-	
 
-	
+
+
 
 
 	</div>
-	
-	
+
+
 	</div>
 
 	<footer class="footer">
-  <div class="container">
-    <div class="content has-text-centered">
-      <p>
-        <strong>UFC Info API</strong> by <a href="https://alemesa1991.github.io/">Alejandro Mesa</a>. The source code is licensed
-        <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
-        is provided by <a href="http://www.ufc.com/">UFC</a>. Made to showcase web development skills and not for comercial use.
-      </p>
-	  <div class="socialIcons">
-		  <a href="https://github.com/alemesa1991"><img class="footerIcon" src="./images/github-icon.svg" alt="Github Icon"></a>
-		  <a href="https://twitter.com/alelikesramen"><img class="footerIcon" src="./images/twitter.svg" alt="Twitter Icon"></a>
-		  <a href="https://codepen.io/alemesa1991/"><img class="footerIcon" src="./images/codepen-icon.svg" alt="Codepen Icon"></a>
-	  </div>
-	  <p>Made with a lot of &nbsp<img class="icon" src="./images/icons/coffee.svg" alt="Coffee Icon"></p>
-     
-    </div>
-  </div>
-</footer>
+		<div class="container">
+			<div class="content has-text-centered">
+				<p>
+					<strong>UFC Info API</strong> by <a href="https://alemesa1991.github.io/">Alejandro Mesa</a>. The source code is licensed
+					<a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content is provided by <a href="http://www.ufc.com/">UFC</a>.
+					Made to showcase web development skills and not for comercial use.
+				</p>
+				<div class="socialIcons">
+					<a href="https://github.com/alemesa1991"><img class="footerIcon" src="./images/github-icon.svg" alt="Github Icon"></a>
+					<a href="https://twitter.com/alelikesramen"><img class="footerIcon" src="./images/twitter.svg" alt="Twitter Icon"></a>
+					<a href="https://codepen.io/alemesa1991/"><img class="footerIcon" src="./images/codepen-icon.svg" alt="Codepen Icon"></a>
+				</div>
+				<p>Made with a lot of &nbsp<img class="icon" src="./images/icons/coffee.svg" alt="Coffee Icon"></p>
+
+			</div>
+		</div>
+	</footer>
 	<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.3/axios.min.js'></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.3/axios.min.js'></script>
 	<script src="js/dist/index.js"></script>
 
 </body>
+
 </html>

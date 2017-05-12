@@ -128,7 +128,7 @@ axios.get('https://crossorigin.me/http://ufc-data-api.ufc.com/api/v3/iphone/even
 
 		if (eventYear > year || month <= eventMonth && year <= eventYear) {
 			/*if(month == eventMonth && year == eventYear && day <= eventDay){
-   console.log('coming this month');
+   	console.log('coming this month');
    }*/
 			if (month == eventMonth && year == eventYear && day > eventDay) {
 				//console.log('passed event this month');

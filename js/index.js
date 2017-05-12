@@ -3,14 +3,14 @@ const nav = document.querySelector('#main');
 const topOfNav = nav.offsetTop;
 
 function fixNav() {
-        if (window.scrollY >= topOfNav) {
-            document.body.style.paddingTop = nav.offsetHeight;
-            document.body.classList.add('fixed-nav');
-        } else {
-            document.body.classList.remove('fixed-nav');
-            document.body.style.paddingTop = 0;
-        }
-    }
+	if (window.scrollY >= topOfNav) {
+		document.body.style.paddingTop = nav.offsetHeight;
+		document.body.classList.add('fixed-nav');
+	} else {
+		document.body.classList.remove('fixed-nav');
+		document.body.style.paddingTop = 0;
+	}
+}
 window.addEventListener('scroll', fixNav);
 
 
@@ -38,40 +38,40 @@ const newsLoad = document.querySelector('.newsLoad');
 
 //Helper Functions
 
-function getWeight(name){
+function getWeight(name) {
 	let returnValue;
-	switch(name){
-		case "Women_Featherweight": 
+	switch (name) {
+		case "Women_Featherweight":
 			returnValue = 145;
 			break;
-		case "Flyweight": 
+		case "Flyweight":
 			returnValue = 125;
 			break;
-		case "Bantamweight": 
+		case "Bantamweight":
 			returnValue = 135;
 			break;
-		case "Featherweight": 
+		case "Featherweight":
 			returnValue = 145;
 			break;
-		case "Lightweight": 
+		case "Lightweight":
 			returnValue = 155;
 			break;
-		case "Welterweight": 
+		case "Welterweight":
 			returnValue = 170;
 			break;
-		case "Middleweight": 
+		case "Middleweight":
 			returnValue = 185;
 			break;
-		case "Light_Heavyweight": 
+		case "Light_Heavyweight":
 			returnValue = 205;
 			break;
-		case "Heavyweight": 
+		case "Heavyweight":
 			returnValue = 265;
 			break;
-		case "Women_Strawweight": 
+		case "Women_Strawweight":
 			returnValue = 115;
 			break;
-		case "Women_Bantamweight": 
+		case "Women_Bantamweight":
 			returnValue = 135;
 			break;
 
@@ -82,7 +82,7 @@ function getWeight(name){
 //Using axios for title holders
 axios.get('https://crossorigin.me/http://ufc-data-api.ufc.com/api/v3/iphone/fighters/title_holders').then(function (response) {
 
-	
+
 
 	var length = response.data.length;
 	var fighters = response.data;
@@ -103,7 +103,7 @@ axios.get('https://crossorigin.me/http://ufc-data-api.ufc.com/api/v3/iphone/figh
 		var draws = fighters[i].draws;
 
 
-		
+
 
 
 		fightersToDisplay.innerHTML += `<div class="championProfile">
@@ -125,9 +125,9 @@ axios.get('https://crossorigin.me/http://ufc-data-api.ufc.com/api/v3/iphone/figh
 												</p>
 											</div>
 										</div>`;
-	
 
-}
+
+	}
 	fightersLoad.style.display = "none";
 }).catch(function (error) {
 	console.log(error);
@@ -139,22 +139,22 @@ axios.get('https://crossorigin.me/http://ufc-data-api.ufc.com/api/v3/iphone/even
 
 	var lengthEvents = response2.data.length;
 	var events = response2.data;
-	
-	
+
+
 	//console.log(lengthEvents);
 
-	for (var i = 0; i < lengthEvents ; i++) {
+	for (var i = 0; i < lengthEvents; i++) {
 
-		
+
 		//console.log(events[i].event_date);
 		var eventYear = events[i].event_date.slice(0, 4);
 		var eventMonth = events[i].event_date.slice(5, 7);
 		var eventDay = events[i].event_date.slice(8, 10);
 
-			
 
-			if(eventYear > year || (month <= eventMonth && year <= eventYear) ){
-				/*if(month == eventMonth && year == eventYear && day <= eventDay){
+
+		if (eventYear > year || (month <= eventMonth && year <= eventYear)) {
+			/*if(month == eventMonth && year == eventYear && day <= eventDay){
    	console.log('coming this month');
    }*/
 			if (month == eventMonth && year == eventYear && day > eventDay) {
@@ -167,10 +167,10 @@ axios.get('https://crossorigin.me/http://ufc-data-api.ufc.com/api/v3/iphone/even
 				}
 
 				const defaultImage = "http://imagec.ufc.com/http%253A%252F%252Fmedia.ufc.tv%252Ffeatures%252F019907_WEB_EventPlaceholderRebrand_PPV.jpg?-mw500-mh500-tc1";
-				if(events[i].feature_image == defaultImage){
+				if (events[i].feature_image == defaultImage) {
 					events[i].feature_image = "../images/placeholder_event.jpg";
 				}
-					
+
 				eventsToDisplay.innerHTML = `<div class="eventProfile">
 												<div class="eventPic">
 													<img src="${events[i].feature_image}" alt="${events[i].base_title}" />
@@ -188,13 +188,13 @@ axios.get('https://crossorigin.me/http://ufc-data-api.ufc.com/api/v3/iphone/even
 												</div>
 											</div>` + eventsToDisplay.innerHTML;
 
-				}
+			}
 		} else {
 			//console.log('passed event');
 			i = lengthEvents;
 		}
 
-			
+
 	}
 
 	eventsLoad.style.display = "none";
@@ -208,11 +208,11 @@ axios.get('https://crossorigin.me/http://ufc-data-api.ufc.com/api/v3/iphone/news
 
 	var lengthNews = response3.data.length;
 	var news = response3.data;
-	
-	
+
+
 	//console.log(lengthEvents);
 
-	for (var i = 0; i < 12 ; i++) {
+	for (var i = 0; i < 12; i++) {
 
 		console.log(news[i].title);
 		newsToDisplay.innerHTML += `<li class="newsBullet">
@@ -223,7 +223,7 @@ axios.get('https://crossorigin.me/http://ufc-data-api.ufc.com/api/v3/iphone/news
 											&nbsp&nbsp${news[i].author ? news[i].author : "By UFC Staff"}
 										</span>
 									</li>`;
-			
+
 	}
 	newsLoad.style.display = "none";
 }).catch(function (error) {
@@ -242,48 +242,48 @@ fetch(endpoint)
 
 
 function findMatches(wordToMatch, names) {
-  return names.filter(fighter => {
-    // here we need to figure out if the city or state matches what was searched
-    const regex = new RegExp(wordToMatch, 'gi');
-    return fighter.first_name.match(regex) || fighter.last_name.match(regex);
-  });
+	return names.filter(fighter => {
+		// here we need to figure out if the city or state matches what was searched
+		const regex = new RegExp(wordToMatch, 'gi');
+		return fighter.first_name.match(regex) || fighter.last_name.match(regex);
+	});
 }
 
 function displayMatches() {
-  const matchArray = findMatches(this.value, names);
-  const html = matchArray.map(fighter => {
-    const regex = new RegExp(this.value, 'gi');
-    //const firstName = fighter.first_name.replace(regex, `<span class="hl">${this.value}</span>`);
-    //const lastName = fighter.last_name.replace(regex, `<span class="hl">${this.value}</span>`);
-	const firstName = fighter.first_name;
-	const lastName = fighter.last_name;
-	const id = fighter.id;
-    return `
+	const matchArray = findMatches(this.value, names);
+	const html = matchArray.map(fighter => {
+		const regex = new RegExp(this.value, 'gi');
+		//const firstName = fighter.first_name.replace(regex, `<span class="hl">${this.value}</span>`);
+		//const lastName = fighter.last_name.replace(regex, `<span class="hl">${this.value}</span>`);
+		const firstName = fighter.first_name;
+		const lastName = fighter.last_name;
+		const id = fighter.id;
+		return `
       <li >
         <a  class="nameFighter" data-id="${id}">${firstName}, ${lastName}</a>
       </li>
     `;
-  }).join('');
-  suggestions.innerHTML = html;
+	}).join('');
+	suggestions.innerHTML = html;
 }
 
 
-function getFighters(){
+function getFighters() {
 	const fighterQuery = document.querySelectorAll('.nameFighter');
 	console.log(fighterQuery);
 
-	fighterQuery.forEach(fighter => fighter.addEventListener("click",function displayFighter(e){
-	document.querySelector(".search-form").value = "";
-	suggestions.innerHTML = "";
-	
-	console.log(this.dataset.id);
-	axios.get(`https://crossorigin.me/http://ufc-data-api.ufc.com/api/v3/iphone/fighters/${this.dataset.id}.json`).then(function (response4) {
-		console.log(response4);
-		var searchFighter = response4.data;
+	fighterQuery.forEach(fighter => fighter.addEventListener("click", function displayFighter(e) {
+		document.querySelector(".search-form").value = "";
+		suggestions.innerHTML = "";
 
-		
+		console.log(this.dataset.id);
+		axios.get(`https://crossorigin.me/http://ufc-data-api.ufc.com/api/v3/iphone/fighters/${this.dataset.id}.json`).then(function (response4) {
+			console.log(response4);
+			var searchFighter = response4.data;
 
-				searchDiv.innerHTML = `<div class="championProfile">
+
+
+			searchDiv.innerHTML = `<div class="championProfile">
 											<div class="profilePic">
 												<img src="${searchFighter.profile_image}" alt="${searchFighter.first_name}">
 											</div>
@@ -311,12 +311,12 @@ function getFighters(){
 											</div>
 										</div>
 										`;
-	}).catch(function (error) {
-	console.log(error);
-	eventsToDisplay.innerHTML += `There has been an error retrieving data => ${error}`;
-});
+		}).catch(function (error) {
+			console.log(error);
+			eventsToDisplay.innerHTML += `There has been an error retrieving data => ${error}`;
+		});
 
-	},false));
+	}, false));
 }
 
 const searchInput = document.querySelector('.search');
@@ -324,5 +324,3 @@ const suggestions = document.querySelector('.suggestions');
 
 searchInput.addEventListener('keyup', displayMatches);
 searchInput.addEventListener('keyup', getFighters);
-
-
