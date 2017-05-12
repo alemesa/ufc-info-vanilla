@@ -476,62 +476,59 @@ body::-webkit-scrollbar-track {
 
 
 /*Media Queries*/
+
 @media only screen and (max-width: 490px) {
 	.championProfile {
-		flex-direction:column;
+		flex-direction: column;
 		justify-content: center;
-		align-items:center;
+		align-items: center;
 		.profilePic {
-		
-		width:80%;
-		padding:5px;
+			width: 80%;
+			padding: 5px;
+		}
 	}
-	}
-	#searchSection{
-		.championProfile{
-			.profilePic{
-				width:90%;
+	#searchSection {
+		.championProfile {
+			.profilePic {
+				width: 90%;
 			}
 		}
 	}
-	
 }
 
 @media only screen and (max-width: 650px) {
-	.eventProfile{
-		flex-direction:column;
+	.eventProfile {
+		flex-direction: column;
 		justify-content: center;
-		align-items:center;
-		.eventPic{
-			width:80%;
-			padding:5px;
+		align-items: center;
+		.eventPic {
+			width: 80%;
+			padding: 5px;
 		}
 	}
 	nav ul {
-	flex: 1;
-	text-align: center;
-	display: flex;
-	flex-direction:row;
-	justify-content: center;
-	align-items: center;
-	flex-wrap:wrap;
-	
-}
-nav li{
-	padding:3px;
-	flex:1;
-}
-.fixed-nav li.logo {
-	padding:0;
-	height:40px;
-	min-width: 100%;
-}
-nav a {
-	padding: 3px;
-	margin:0 5px;
-	display: inline-flex;
-}
-
+		flex: 1;
+		text-align: center;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		flex-wrap: wrap;
+	}
+	nav li {
+		padding: 3px;
+		flex: 1;
+	}
+	.fixed-nav li.logo {
+		padding: 0;
+		height: 40px;
+		min-width: 100%;
+	}
+	nav a {
+		padding: 3px;
+		margin: 0 5px;
+		display: inline-flex;
+	}
 }
 
 @media only screen and (max-width: 800px) {
