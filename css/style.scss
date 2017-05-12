@@ -275,10 +275,9 @@ nav a {
 		.profilePic {
 			margin-top: 1em;
 			img {
-				width: 60%;
 				box-shadow: 1px 1px 2px #aaa;
 			}
-			width:40%;
+			width:50%;
 			padding:5px;
 		}
 		.profileData {
@@ -488,6 +487,13 @@ body::-webkit-scrollbar-track {
 		padding:5px;
 	}
 	}
+	#searchSection{
+		.championProfile{
+			.profilePic{
+				width:90%;
+			}
+		}
+	}
 	
 }
 
@@ -498,9 +504,34 @@ body::-webkit-scrollbar-track {
 		align-items:center;
 		.eventPic{
 			width:80%;
-		padding:5px;
+			padding:5px;
 		}
 	}
+	nav ul {
+	flex: 1;
+	text-align: center;
+	display: flex;
+	flex-direction:row;
+	justify-content: center;
+	align-items: center;
+	flex-wrap:wrap;
+	
+}
+nav li{
+	padding:3px;
+	flex:1;
+}
+.fixed-nav li.logo {
+	padding:0;
+	height:40px;
+	min-width: 100%;
+}
+nav a {
+	padding: 3px;
+	margin:0 5px;
+	display: inline-flex;
+}
+
 }
 
 @media only screen and (max-width: 800px) {
