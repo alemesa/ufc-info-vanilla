@@ -519,14 +519,17 @@ body::-webkit-scrollbar-track {
 		padding: 3px;
 		flex: 1;
 	}
+	nav li.logo{
+		padding:0;
+	}
 	.fixed-nav li.logo {
 		padding: 0;
 		height: 40px;
 		min-width: 100%;
 	}
 	nav a {
-		padding: 3px;
-		margin: 0 5px;
+		//padding: 3px;
+		//margin: 0 5px;
 		display: inline-flex;
 	}
 }
