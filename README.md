@@ -1,6 +1,6 @@
 # UFC-Info-API
 
-Check a live version [here](ufc-ranking.surge.sh)
+Check a live version [here](http://ufc-ranking.surge.sh/)
 
 Rankings and Event using the UFC API.
 
