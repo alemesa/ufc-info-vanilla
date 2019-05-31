@@ -31,7 +31,7 @@
     "gulp-size": "^3.0.0",
     "gulp-sourcemaps": "^2.6.4",
     "gulp-surge": "^0.1.0",
-    "surge": "^0.20.1"
+    "surge": "^0.21.0"
   },
   "dependencies": {
     "jump.js": "^1.0.2"
